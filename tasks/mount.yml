@@ -11,3 +11,4 @@
   loop: "{{ iso_images }}"
   loop_control:
     label: "{{ item.name }}"
+  when: iso_mount_enabled | bool

@@ -8,6 +8,9 @@ iso_storage_path: /var/lib/isos
 # Directory where ISOs are loop-mounted
 iso_mount_root: /var/lib/iso_mounts
 
+# Whether to loop-mount the downloaded ISOs
+iso_mount_enabled: false
+
 # User chooses from the predefined catalog (list of catalog key names)
 iso_enabled_images: "{{ enabled_images | default([]) }}"
 

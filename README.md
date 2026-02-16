@@ -19,33 +19,34 @@ ansible-galaxy collection install ansible.posix
 
 ### Storage Configuration
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `iso_storage_path` | `/var/lib/isos` | Directory where ISO files are stored |
-| `iso_mount_root`     | `/var/lib/iso_mounts` | Directory where ISOs are loop-mounted |
+| Variable            | Default               | Description                                                              |
+|---------------------|-----------------------|--------------------------------------------------------------------------|
+| `iso_storage_path`  | `/var/lib/isos`       | Directory where ISO files are stored                                     |
+| `iso_mount_enabled` | `false`               | Whether to loop-mount downloaded ISO files                               |
+| `iso_mount_root`    | `/var/lib/iso_mounts` | Directory where ISOs are loop-mounted (if `iso_mount_enabled` is `true`) |
 
 ### Image Selection
 
-| Variable             | Default | Description |
-|----------------------|---------|-------------|
+| Variable             | Default                               | Description |
+|----------------------|---------------------------------------|-------------|
 | `iso_enabled_images` | `{{ enabled_images \| default([]) }}` | List of catalog key names to enable (falls back to shared `enabled_images`) |
-| `iso_custom_images`  | `[]`    | List of custom image definitions (each with `name` and `url`) |
+| `iso_custom_images`  | `[]`                                  | List of custom image definitions (each with `name` and `url`) |
 
 ### Built-in Catalog
 
 The role includes a predefined catalog (`iso_catalog`) with URLs for the following images:
 
-| Key                         | Distribution     |
-|-----------------------------|------------------|
-| `alpine-3.23`               | Alpine 3.23      |
-| `rocky-8.4` — `rocky-8.10`   | Rocky Linux 8.x (full and `-minimal` variants) |
-| `rocky-9.0` — `rocky-9.7`    | Rocky Linux 9.x (full and `-minimal` variants) |
-| `rocky-10.0` — `rocky-10.1`  | Rocky Linux 10.x (full and `-minimal` variants) |
+| Key                         | Distribution        |
+|-----------------------------|---------------------|
+| `alpine-3.23`               | Alpine 3.23         |
+| `rocky-8.4` — `rocky-8.10`  | Rocky Linux 8.x (full and `-minimal` variants) |
+| `rocky-9.0` — `rocky-9.7`   | Rocky Linux 9.x (full and `-minimal` variants) |
+| `rocky-10.0` — `rocky-10.1` | Rocky Linux 10.x (full and `-minimal` variants) |
 | `tinycore-17.0`             | TinyCore Linux 17.0 |
-| `ubuntu-18.04`              | Ubuntu 18.04 LTS |
-| `ubuntu-20.04`              | Ubuntu 20.04 LTS |
-| `ubuntu-22.04`              | Ubuntu 22.04 LTS |
-| `ubuntu-24.04`              | Ubuntu 24.04 LTS |
+| `ubuntu-18.04`              | Ubuntu Live Server 18.04 LTS |
+| `ubuntu-20.04`              | Ubuntu Live Server 20.04 LTS |
+| `ubuntu-22.04`              | Ubuntu Live Server 22.04 LTS |
+| `ubuntu-24.04`              | Ubuntu Live Server 24.04 LTS |
 
 ## Example Playbooks
 
@@ -104,7 +105,7 @@ When combining all three roles, set the shared `enabled_images` and `custom_imag
 After running the role, each enabled image will be:
 
 1. **Downloaded** to `{{ iso_storage_path }}/{{ name }}.iso`
-2. **Mounted** (read-only, loop) at `{{ iso_mount_root }}/{{ name }}/`
+2. **Mounted** (read-only, loop) at `{{ iso_mount_root }}/{{ name }}/` (if `iso_mount_enabled` is `true`)
 
 The `iso_images` fact is set and available to subsequent roles (e.g., `pxe_menu`) containing the merged list of catalog + custom images.
 
@@ -123,11 +124,10 @@ molecule test
 
 ### Test Matrix
 
-| Platform         | Image                                |
-|------------------|--------------------------------------|
-| Rocky Linux 9    | `geerlingguy/docker-rockylinux9-ansible` |
-| Ubuntu 22.04     | `geerlingguy/docker-ubuntu2204-ansible`  |
-| Ubuntu 24.04     | `geerlingguy/docker-ubuntu2404-ansible`  |
+| Platform         | Image                                     |
+|------------------|-------------------------------------------|
+| RHEL UBI 9       | `docker.io/cthullu/ubi9-ansible:latest`   |
+| Rocky Linux 10   | `geerlingguy/docker-rockylinux10-ansible` |
 
 ## License
 
