@@ -1,0 +1,48 @@
+# Python
+*.pyc
+__pycache__/
+*.py[cod]
+
+# Testing artifacts
+*.retry
+
+# Ansible Galaxy artifacts
+*.tar.gz
+.galaxy_install_info
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Molecule
+.molecule/
+molecule/*/.molecule/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Build artifacts
+*.egg-info/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local development files
+inventory
+ansible.cfg
+
+# Local Ansible role symlinks (for development only)
+.ansible/roles/

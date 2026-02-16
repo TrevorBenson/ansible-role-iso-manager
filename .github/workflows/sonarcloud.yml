@@ -1,0 +1,58 @@
+---
+name: SonarCloud Analysis
+
+on:
+  workflow_call:
+    secrets:
+      SONAR_TOKEN:
+        required: true
+  workflow_dispatch:
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Code Analysis
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check for SONAR_TOKEN
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "::error::SONAR_TOKEN is not set. Please ensure the secret is configured."
+            exit 1
+          fi
+
+      - name: Checkout code
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Read project version
+        id: version
+        run: |
+          if [ -f VERSION ]; then
+            echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::VERSION file not found, using default"
+            echo "version=0.0.0" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@a31c9398be7ace6bbfaf30c0bd5d415f843d45e9 # v7.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=TrevorBenson_ansible-role-iso-manager
+            -Dsonar.organization=trevorbenson
+            -Dsonar.projectVersion=${{ steps.version.outputs.version }}
+
+      - name: Check Quality Gate
+        uses: sonarsource/sonarqube-quality-gate-action@cf038b0e0cdecfa9e56c198bbb7d21d751d62c3b # v1.2.0
+        timeout-minutes: 5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          scanMetadataReportFile: .scannerwork/report-task.txt

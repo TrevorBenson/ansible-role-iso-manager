@@ -1,0 +1,23 @@
+---
+profile: production
+
+exclude_paths:
+  - .git/
+  - .github/
+  - .venv/
+  - molecule/
+
+skip_list:
+  - yaml[line-length]  # Handled by yamllint
+  - name[casing]       # Allow lowercase task names
+
+enable_list:
+  - args
+  - empty-string-compare
+  - no-log-password
+  - no-same-owner
+
+strict: true
+progressive: false
+quiet: false
+verbosity: 1

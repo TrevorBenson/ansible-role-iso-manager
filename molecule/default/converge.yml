@@ -1,0 +1,14 @@
+---
+# Molecule converge playbook - applies the ISO manager role to test instances
+# Uses tinycore-17.0 from the catalog to test real download + mount
+
+- name: Converge
+  hosts: all
+  become: true
+
+  roles:
+    - role: trevorbenson.iso_manager
+      vars:
+        iso_enabled_images:
+          - tinycore-17.0
+        iso_custom_images: []
