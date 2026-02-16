@@ -1,3 +1,4 @@
+---
 # tasks/filesystem.yml - Create required directories for ISO storage and mounts
 # Ensures that for each item in ISO_IMAGES, the mount directory exists
 
