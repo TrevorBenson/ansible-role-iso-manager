@@ -1,0 +1,14 @@
+---
+# tasks/mount.yml - Loop-mount ISO files for PXE boot access
+
+- name: Mount ISO files
+  ansible.posix.mount:
+    path: "{{ iso_mount_root }}/{{ item.name }}"
+    src: "{{ iso_storage_path }}/{{ item.name }}.iso"
+    fstype: iso9660
+    opts: loop,ro
+    state: mounted
+  loop: "{{ iso_images }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: iso_mount_enabled | bool

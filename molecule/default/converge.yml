@@ -12,4 +12,4 @@
         iso_enabled_images:
           - tinycore-17.0
         iso_custom_images: []
-        iso_mount_enabled: true
+        iso_mount_enabled: false

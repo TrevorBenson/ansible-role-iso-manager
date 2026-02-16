@@ -1,0 +1,17 @@
+---
+# tasks/resolve.yml - Resolve enabled images from catalog and custom definitions
+
+- name: Validate requested images exist in catalog
+  ansible.builtin.assert:
+    that: item in iso_catalog
+    fail_msg: "Unknown ISO {{ item }}"
+  loop: "{{ iso_enabled_images }}"
+
+- name: Build resolved images list from catalog
+  ansible.builtin.set_fact:
+    _iso_catalog_images: "{{ _iso_catalog_images | default([]) + [iso_catalog[item] | combine({'name': item})] }}"
+  loop: "{{ iso_enabled_images }}"
+
+- name: Combine catalog and custom images
+  ansible.builtin.set_fact:
+    iso_images: "{{ (_iso_catalog_images | default([])) + iso_custom_images }}"

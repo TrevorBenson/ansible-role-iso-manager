@@ -1,0 +1,32 @@
+---
+galaxy_info:
+  role_name: iso_manager
+  namespace: trevorbenson
+  author: Trevor Benson
+  description: Download and loop-mount ISO images for PXE network boot environments
+
+  license: Apache-2.0
+
+  min_ansible_version: "2.14"
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - jammy
+        - noble
+
+  galaxy_tags:
+    - pxe
+    - iso
+    - netboot
+    - provisioning
+    - tftp
+    - imaging
+
+collections:
+  - ansible.posix
+
+dependencies: []
