@@ -1,0 +1,108 @@
+---
+# vars/main.yml - ISO Image Catalog
+# Predefined catalog of known ISO images
+# Users select from this catalog via pxe_enabled_images
+
+iso_catalog:
+
+  tinycore-17.0:
+    url: https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/TinyCore-current.iso
+
+  alpine-3.23:
+    url: https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-standard-3.23.3-x86_64.iso
+
+  ubuntu-24.04:
+    url: https://releases.ubuntu.com/24.04/ubuntu-24.04-live-server-amd64.iso
+
+  ubuntu-22.04:
+    url: https://releases.ubuntu.com/22.04/ubuntu-22.04-live-server-amd64.iso
+
+  ubuntu-20.04:
+    url: https://releases.ubuntu.com/20.04/ubuntu-20.04-live-server-amd64.iso
+
+  ubuntu-18.04:
+    url: https://releases.ubuntu.com/18.04/ubuntu-18.04-live-server-amd64.iso
+
+  rocky-8.4:
+    url: https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4.iso
+
+  rocky-8.4-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.4/isos/x86_64/Rocky-8.4-minimal.iso
+
+  rocky-8.5:
+    url: https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5.iso
+
+  rocky-8.5-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.5/isos/x86_64/Rocky-8.5-minimal.iso
+
+  rocky-8.6:
+    url: https://download.rockylinux.org/pub/rocky/8.6/isos/x86_64/Rocky-8.6.iso
+
+  rocky-8.6-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.6/isos/x86_64/Rocky-8.6-minimal.iso
+
+  rocky-8.7:
+    url: https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/Rocky-8.7.iso
+
+  rocky-8.7-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.7/isos/x86_64/Rocky-8.7-minimal.iso
+
+  rocky-8.8:
+    url: https://download.rockylinux.org/pub/rocky/8.8/isos/x86_64/Rocky-8.8.iso
+
+  rocky-8.8-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.8/isos/x86_64/Rocky-8.8-minimal.iso
+
+  rocky-8.9:
+    url: https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/Rocky-8.9.iso
+
+  rocky-8.9-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.9/isos/x86_64/Rocky-8.9-minimal.iso
+
+  rocky-8.10:
+    url: https://download.rockylinux.org/pub/rocky/8.10/isos/x86_64/Rocky-8.10.iso
+
+  rocky-8.10-minimal:
+    url: https://download.rockylinux.org/pub/rocky/8.10/isos/x86_64/Rocky-8.10-minimal.iso
+
+  rocky-9.0:
+    url: https://download.rockylinux.org/pub/rocky/9.0/isos/x86_64/Rocky-9.0.iso
+
+  rocky-9.0-minimal:
+    url: https://download.rockylinux.org/pub/rocky/9.0/isos/x86_64/Rocky-9.0-minimal.iso
+
+  rocky-9.1:
+    url: https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/Rocky-9.1.iso
+
+  rocky-9.1-minimal:
+    url: https://download.rockylinux.org/pub/rocky/9.1/isos/x86_64/Rocky-9.1-minimal.iso
+
+  rocky-9.2:
+    url: https://download.rockylinux.org/pub/rocky/9.2/isos/x86_64/Rocky-9.2.iso
+
+  rocky-9.2-minimal:
+    url: https://download.rockylinux.org/pub/rocky/9.2/isos/x86_64/Rocky-9.2-minimal.iso
+
+  rocky-9.3:
+    url: https://download.rockylinux.org/pub/rocky/9.3/isos/x86_64/Rocky-9.3.iso
+
+  rocky-9.3-minimal:
+    url: https://download.rockylinux.org/pub/rocky/9.3/isos/x86_64/Rocky-9.3-minimal.iso
+
+  rocky-9.4:
+    url: https://download.rockylinux.org/pub/rocky/9.4/isos/x86_64/Rocky-9.4.iso
+
+  rocky-9.4-minimal:
+    url: https://download.rockylinux.org/pub/rocky/9.4/isos/x86_64/Rocky-9.4-minimal.iso
+
+  rocky-10.0:
+    url: https://download.rockylinux.org/pub/rocky/10.0/isos/x86_64/Rocky-10.0.iso
+
+  rocky-10.0-minimal:
+    url: https://download.rockylinux.org/pub/rocky/10.0/isos/x86_64/Rocky-10.0-minimal.iso
+
+  rocky-10.1:
+    url: https://download.rockylinux.org/pub/rocky/10.1/isos/x86_64/Rocky-10.1.iso
+
+  rocky-10.1-minimal:
+    url: https://download.rockylinux.org/pub/rocky/10.1/isos/x86_64/Rocky-10.1-minimal.iso

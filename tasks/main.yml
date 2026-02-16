@@ -1,0 +1,15 @@
+---
+# tasks/main.yml - ISO Manager
+# Resolves enabled images, ensures directories, downloads ISOs, and loop-mounts them
+
+- name: Resolve enabled images
+  ansible.builtin.import_tasks: resolve.yml
+
+- name: Ensure filesystem directories
+  ansible.builtin.import_tasks: filesystem.yml
+
+- name: Download ISO files
+  ansible.builtin.import_tasks: download.yml
+
+- name: Mount ISO files
+  ansible.builtin.import_tasks: mount.yml

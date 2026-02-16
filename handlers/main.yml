@@ -1,0 +1,4 @@
+---
+# handlers/main.yml - ISO Manager Role Handlers
+# This role manages ISO files and mounts but does not manage services.
+# Consuming roles should define their own handlers for service restarts.
