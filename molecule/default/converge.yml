@@ -7,7 +7,7 @@
   become: true
 
   roles:
-    - role: iso_manager
+    - role: trevorbenson.iso_manager
       vars:
         iso_enabled_images:
           - tinycore-17.0
