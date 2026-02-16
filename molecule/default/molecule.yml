@@ -1,0 +1,70 @@
+---
+# Molecule configuration for ISO Manager role testing
+# Tests image resolution, directory creation, and mount operations
+
+dependency:
+  name: galaxy
+
+driver:
+  name: podman
+
+platforms:
+  # RHEL 9
+  - name: ubi9-iso-manager
+    image: docker.io/cthullu/ubi9-ansible:latest
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init
+    networks:
+      - name: molecule
+    groups:
+      - ubi9
+
+  # Rocky Linux 10
+  - name: rocky10-iso-manager
+    image: docker.io/geerlingguy/docker-rockylinux10-ansible:latest
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    command: /sbin/init
+    networks:
+      - name: molecule
+    groups:
+      - rocky10
+
+provisioner:
+  name: ansible
+  config_options:
+    defaults:
+      interpreter_python: auto_silent
+      callbacks_enabled: profile_tasks, timer, yaml
+      roles_path: "${MOLECULE_PROJECT_DIRECTORY}/..:~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles"
+  inventory:
+    host_vars:
+      ubi9-iso-manager:
+        ansible_python_interpreter: /usr/bin/python3
+      rocky10-iso-manager:
+        ansible_python_interpreter: /usr/bin/python3
+  playbooks:
+    converge: converge.yml
+    verify: verify.yml
+    prepare: prepare.yml
+
+verifier:
+  name: ansible
+
+scenario:
+  name: default
+  test_sequence:
+    - dependency
+    - destroy
+    - syntax
+    - create
+    - prepare
+    - converge
+    - idempotence
+    - verify
+    - destroy

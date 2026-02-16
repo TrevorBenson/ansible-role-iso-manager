@@ -1,0 +1,28 @@
+---
+- name: Prepare environment for ISO testing
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+    - name: Ensure loop devices exist
+      ansible.builtin.shell: |
+        # Create /dev/loop-control if missing (major 10, minor 237)
+        if [ ! -e /dev/loop-control ]; then
+            mknod /dev/loop-control c 10 237
+        fi
+
+        # Create loop devices loop0-loop7 (major 7)
+        for i in {0..7}; do
+            if [ ! -e /dev/loop$i ]; then
+                mknod /dev/loop$i b 7 $i
+            fi
+        done
+      args:
+        executable: /bin/bash
+      register: loop_creation
+      failed_when: false
+      changed_when: "loop_creation.rc == 0"
+
+    - name: Debug loop device creation
+      ansible.builtin.debug:
+        msg: "Loop creation result: {{ loop_creation.stdout }}"
