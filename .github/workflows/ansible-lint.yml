@@ -18,7 +18,7 @@ on:
         description: Paths to lint (space-separated). If empty, runs ansible-lint with no explicit paths.
         required: false
         type: string
-        default: ""
+        default: "defaults handlers meta tasks vars"
   workflow_dispatch:
     inputs:
       ansible-version:
