@@ -20,7 +20,6 @@
       args:
         executable: /bin/bash
       register: loop_creation
-      failed_when: false
       changed_when: "loop_creation.rc == 0"
 
     - name: Debug loop device creation

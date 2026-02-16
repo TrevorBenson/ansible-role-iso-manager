@@ -35,16 +35,17 @@ ansible-galaxy collection install ansible.posix
 
 The role includes a predefined catalog (`iso_catalog`) with URLs for the following images:
 
-| Key            | Distribution     |
-|----------------|------------------|
-| `alpine-3.23`  | Alpine 3.23      |
-| `ubuntu-18.04` | Ubuntu 18.04 LTS |
-| `ubuntu-20.04` | Ubuntu 20.04 LTS |
-| `ubuntu-22.04` | Ubuntu 22.04 LTS |
-| `ubuntu-24.04` | Ubuntu 24.04 LTS |
-| `rocky-8.4` — `rocky-8.10` | Rocky Linux 8.x (full and `-minimal` variants) |
-| `rocky-9.0` — `rocky-9.4` | Rocky Linux 9.x (full and `-minimal` variants) |
-| `rocky-10.0` — `rocky-10.1` | Rocky Linux 10.x (full and `-minimal` variants) |
+| Key                         | Distribution     |
+|-----------------------------|------------------|
+| `alpine-3.23`               | Alpine 3.23      |
+| `rocky-8.4` — `rocky-8.10`   | Rocky Linux 8.x (full and `-minimal` variants) |
+| `rocky-9.0` — `rocky-9.7`    | Rocky Linux 9.x (full and `-minimal` variants) |
+| `rocky-10.0` — `rocky-10.1`  | Rocky Linux 10.x (full and `-minimal` variants) |
+| `tinycore-17.0`             | TinyCore Linux 17.0 |
+| `ubuntu-18.04`              | Ubuntu 18.04 LTS |
+| `ubuntu-20.04`              | Ubuntu 20.04 LTS |
+| `ubuntu-22.04`              | Ubuntu 22.04 LTS |
+| `ubuntu-24.04`              | Ubuntu 24.04 LTS |
 
 ## Example Playbooks
 
@@ -93,9 +94,9 @@ When combining all three roles, set the shared `enabled_images` and `custom_imag
         kernel_path: casper/vmlinuz
         initrd_path: casper/initrd
   roles:
-    - iso_manager    # downloads + mounts ISOs (uses url)
-    - pxe_server     # installs services
-    - pxe_menu       # renders boot menus (uses kernel_path, initrd_path)
+    - trevorbenson.iso_manager    # downloads + mounts ISOs (uses url)
+    - trevorbenson.pxe_server     # installs services
+    - trevorbenson.pxe_menu       # renders boot menus (uses kernel_path, initrd_path)
 ```
 
 ## Output

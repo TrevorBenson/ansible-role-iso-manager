@@ -29,4 +29,7 @@ galaxy_info:
     - tftp
     - imaging
 
+collections:
+  - ansible.posix
+
 dependencies: []

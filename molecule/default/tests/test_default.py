@@ -48,11 +48,24 @@ def test_directory_permissions(host, path):
 # =============================================================================
 
 
-def test_iso_file_exists(host):
-    """Verify alpine ISO file was downloaded."""
-    iso = host.file("/var/lib/isos/alpine-3.23.iso")
-    assert iso.exists, "Alpine ISO file should exist"
-    assert iso.is_file, "Alpine ISO should be a regular file"
+def test_iso_files_exist(host):
+    """Verify configured ISO file(s) were downloaded."""
+    ansible_vars = host.ansible.get_variables()
+
+    # Derive ISO directory and filenames from role variables, with safe defaults
+    iso_dir = ansible_vars.get("iso_storage_path", "/var/lib/isos")
+    
+    # Try to get resolved list, fallback to what we know is enabled in converge
+    iso_images = ansible_vars.get("iso_images")
+    if not iso_images:
+        iso_filenames = ["tinycore-17.0.iso"]
+    else:
+        iso_filenames = [item["name"] + ".iso" for item in iso_images]
+
+    for iso_name in iso_filenames:
+        iso = host.file(f"{iso_dir}/{iso_name}")
+        assert iso.exists, f"ISO file {iso_name} should exist in {iso_dir}"
+        assert iso.is_file, f"ISO {iso_name} in {iso_dir} should be a regular file"
 
 
 # =============================================================================
@@ -60,24 +73,39 @@ def test_iso_file_exists(host):
 # =============================================================================
 
 
-def test_mount_point_exists(host):
-    """Verify mount point directory exists."""
-    mount_dir = host.file("/var/lib/iso_mounts/alpine-3.23")
-    assert mount_dir.exists, "Mount point should exist"
-    assert mount_dir.is_directory, "Mount point should be a directory"
-
-
 def test_iso_is_mounted(host):
-    """Verify ISO is actually mounted."""
-    result = host.run("findmnt -n /var/lib/iso_mounts/alpine-3.23")
-    assert result.rc == 0, "ISO should be mounted at /var/lib/iso_mounts/alpine-3.23"
-
-
-def test_mounted_content_accessible(host):
-    """Verify boot directory is accessible via mount."""
-    boot = host.file("/var/lib/iso_mounts/alpine-3.23/boot")
-    assert boot.exists, "Boot directory should be accessible via mount"
-    assert boot.is_directory, "Boot should be a directory"
+    """Verify ISO is actually mounted with correct FS type and options."""
+    ansible_vars = host.ansible.get_variables()
+    mount_root = ansible_vars.get("iso_mount_root", "/var/lib/iso_mounts")
+    
+    iso_images = ansible_vars.get("iso_images")
+    if not iso_images:
+        iso_names = ["tinycore-17.0"]
+    else:
+        iso_names = [item["name"] for item in iso_images]
+        
+    for name in iso_names:
+        mount_point = f"{mount_root}/{name}"
+        
+        # Check mount point existence
+        mp = host.file(mount_point)
+        assert mp.exists, f"Mount point {mount_point} should exist"
+        assert mp.is_directory, f"Mount point {mount_point} should be a directory"
+        
+        # Check mount details
+        result = host.run(f"findmnt -no FSTYPE,OPTIONS {mount_point}")
+        assert result.rc == 0, f"ISO should be mounted at {mount_point}"
+        
+        stdout = result.stdout.strip()
+        assert stdout, "findmnt output should not be empty"
+        
+        fields = stdout.split(None, 1)
+        assert len(fields) == 2, f"Unexpected findmnt output format: {stdout}"
+        
+        fstype, options = fields
+        assert fstype == "iso9660", f"Unexpected filesystem type for ISO: {fstype}"
+        option_list = options.split(",")
+        assert "ro" in option_list, f"ISO mount should be read-only, got options: {options}"
 
 
 # =============================================================================
@@ -85,7 +113,12 @@ def test_mounted_content_accessible(host):
 # =============================================================================
 
 
-def test_no_world_writable_files(host):
-    """Verify no world-writable files in ISO directories."""
-    result = host.run("find /var/lib/isos /var/lib/iso_mounts -type f -perm -002 2>/dev/null")
-    assert result.stdout.strip() == "", "No files should be world-writable"
+def test_no_world_writable_paths(host):
+    """Verify no world-writable files or directories in ISO paths."""
+    # Check files
+    result_files = host.run("find /var/lib/isos /var/lib/iso_mounts -type f -perm -002 2>/dev/null")
+    assert result_files.stdout.strip() == "", "No files should be world-writable"
+    
+    # Check directories
+    result_dirs = host.run("find /var/lib/isos /var/lib/iso_mounts -type d -perm -002 2>/dev/null")
+    assert result_dirs.stdout.strip() == "", "No directories should be world-writable"

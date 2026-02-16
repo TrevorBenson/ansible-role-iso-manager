@@ -8,8 +8,8 @@ iso_storage_path: /var/lib/isos
 # Directory where ISOs are loop-mounted
 iso_mount_root: /var/lib/iso_mounts
 
-# User can append completely custom images (list of dicts with name, url, kernel_path, initrd_path)
+# User chooses from the predefined catalog (list of catalog key names)
 iso_enabled_images: "{{ enabled_images | default([]) }}"
 
-# User chooses from the predefined catalog (list of catalog key names)
+# User can append completely custom images (list of dicts with name, url, kernel_path, initrd_path)
 iso_custom_images: []

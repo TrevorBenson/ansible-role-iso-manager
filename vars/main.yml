@@ -1,12 +1,12 @@
 ---
 # vars/main.yml - ISO Image Catalog
 # Predefined catalog of known ISO images
-# Users select from this catalog via pxe_enabled_images
+# Users select from this catalog via iso_enabled_images
 
 iso_catalog:
 
   tinycore-17.0:
-    url: https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/TinyCore-current.iso
+    url: https://distro.ibiblio.org/tinycorelinux/17.x/x86/release/TinyCore-17.0.iso
 
   alpine-3.23:
     url: https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-standard-3.23.3-x86_64.iso

@@ -1,16 +1,16 @@
----
 # tasks/filesystem.yml - Create required directories for ISO storage and mounts
-# THIS NEEDS TO ENSURE THAT FOR EACH ITEM IN ISO_IMAGES, THE MOUNT DIRECTORY EXISTS
+# Ensures that for each item in ISO_IMAGES, the mount directory exists
 
-- name: Ensure ISO storage and mount directories exist
+- name: Ensure ISO storage and mount root directories exist
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: "0755"
   loop:
     - "{{ iso_storage_path }}"
+    - "{{ iso_mount_root }}"
 
-- name: Ensure ISO mount directories exist
+- name: Ensure ISO mount point directories exist
   ansible.builtin.file:
     path: "{{ iso_mount_root }}/{{ item.name }}"
     state: directory

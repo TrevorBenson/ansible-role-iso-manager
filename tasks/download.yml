@@ -6,6 +6,8 @@
     url: "{{ item.url }}"
     dest: "{{ iso_storage_path }}/{{ item.name }}.iso"
     mode: "0644"
+    checksum: "{{ item.checksum | default(omit) }}"
+    timeout: 600
   loop: "{{ iso_images }}"
   loop_control:
     label: "{{ item.name }}"

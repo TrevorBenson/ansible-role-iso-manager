@@ -2,6 +2,9 @@
 # tasks/main.yml - ISO Manager
 # Resolves enabled images, ensures directories, downloads ISOs, and loop-mounts them
 
+- name: Derive custom ISO images
+  ansible.builtin.import_tasks: derive_custom.yml
+
 - name: Resolve enabled images
   ansible.builtin.import_tasks: resolve.yml
 

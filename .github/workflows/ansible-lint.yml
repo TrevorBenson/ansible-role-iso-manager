@@ -58,11 +58,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install ansible-core==${{ inputs.ansible-version }}.* ansible-lint
 
-      - name: Run ansible-lint
+      env:
+          ANSIBLE_PATHS: ${{ inputs.ansible-paths }}
         run: |
           ansible-lint --version
-          if [ -z "${{ inputs.ansible-paths }}" ]; then
+          if [ -z "$ANSIBLE_PATHS" ]; then
             ansible-lint -v
           else
-            ansible-lint ${{ inputs.ansible-paths }} -v
+            ansible-lint "$ANSIBLE_PATHS" -v
           fi

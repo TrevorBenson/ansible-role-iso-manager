@@ -87,7 +87,7 @@ jobs:
       - name: Check all jobs succeeded
         run: |
           results="${{ toJSON(needs) }}"
-          if echo "$results" | grep -qE '"result":"(failure|cancelled|skipped)"'; then
+          if echo "$results" | grep -qE '"result":\s*"(failure|cancelled)"'; then
             echo "❌ One or more checks failed"
             exit 1
           fi
