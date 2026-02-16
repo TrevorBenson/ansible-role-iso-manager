@@ -15,8 +15,10 @@ platforms:
     pre_build_image: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
-    command: /usr/sbin/init
+    command: /sbin/init
     cgroupns_mode: host
+    networks:
+      - name: molecule
     groups:
       - ubi9
 
@@ -27,6 +29,7 @@ platforms:
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /sbin/init
+    cgroupns_mode: host
     networks:
       - name: molecule
     groups:
