@@ -114,18 +114,18 @@ jobs:
         if: steps.check-version.outputs.released == 'true'
         run: |
           cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
-          ## 🎉 Release Summary
-        
-          **Version:** ${{ steps.check-version.outputs.version }}
-          **Branch:** ${{ github.ref_name }}
-          **Commit:** ${{ github.sha }}
-        
-          ### Published To
-          - ✅ GitHub Releases
-          - ✅ Ansible Galaxy (trevorbenson.iso_manager)
-        
-          ### Links
-          - [GitHub Release](https://github.com/${{ github.repository }}/releases/tag/v${{ steps.check-version.outputs.version }})
-          - [Ansible Galaxy](https://galaxy.ansible.com/trevorbenson/iso_manager)
-          - [Changelog](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
-          EOF
+## 🎉 Release Summary
+
+**Version:** ${{ steps.check-version.outputs.version }}
+**Branch:** ${{ github.ref_name }}
+**Commit:** ${{ github.sha }}
+
+### Published To
+- ✅ GitHub Releases
+- ✅ Ansible Galaxy (trevorbenson.iso_manager)
+
+### Links
+- [GitHub Release](https://github.com/${{ github.repository }}/releases/tag/v${{ steps.check-version.outputs.version }})
+- [Ansible Galaxy](https://galaxy.ansible.com/trevorbenson/iso_manager)
+- [Changelog](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
+EOF
