@@ -51,7 +51,7 @@ jobs:
       - name: run-ansible-lint
         uses: ansible/ansible-lint@7f6abc5ef97d0fb043a0f3d416dfbc74399fbda0 # v26.1.1
         with:
-          args: ${{ inputs.ansible-paths }}
+          args: -v ${{ inputs.ansible-paths }}
           setup_python: "true"
           python_version: ${{ inputs.python-version }}
 

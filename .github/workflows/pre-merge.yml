@@ -72,7 +72,6 @@ jobs:
         ansible-lint,
         role-validation,
         molecule-tests,
-        sonarcloud,
         codeql,
       ]
     if: always()
