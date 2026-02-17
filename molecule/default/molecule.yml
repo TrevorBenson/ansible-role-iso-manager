@@ -13,6 +13,7 @@ platforms:
   - name: ubi9-iso-manager
     image: docker.io/cthullu/ubi9-ansible:latest
     pre_build_image: true
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /usr/sbin/init
@@ -24,6 +25,7 @@ platforms:
   - name: rocky10-iso-manager
     image: docker.io/geerlingguy/docker-rockylinux10-ansible:latest
     pre_build_image: true
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     command: /sbin/init
@@ -38,7 +40,7 @@ provisioner:
   config_options:
     defaults:
       interpreter_python: auto_silent
-      callbacks_enabled: profile_tasks, timer, yaml
+      remote_tmp: /tmp
       roles_path: "${MOLECULE_PROJECT_DIRECTORY}/..:~/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles"
   inventory:
     host_vars:
@@ -56,7 +58,6 @@ verifier:
 scenario:
   name: default
   test_sequence:
-    - dependency
     - destroy
     - syntax
     - create

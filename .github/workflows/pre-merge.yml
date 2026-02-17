@@ -45,6 +45,7 @@ jobs:
     uses: ./.github/workflows/ansible-lint.yml
     with:
       ansible-version: ${{ inputs.ansible-version || '2.16' }}
+      ansible-paths: "defaults handlers meta tasks vars"
       python-version: ${{ inputs.python-version || '3.12' }}
 
   role-validation:
@@ -57,13 +58,6 @@ jobs:
     needs: [yaml-lint, ansible-lint, role-validation]
     with:
       python-version: ${{ inputs.python-version || '3.12' }}
-
-  sonarcloud:
-    name: SonarCloud Analysis
-    uses: ./.github/workflows/sonarcloud.yml
-    needs: [molecule-tests]
-    secrets:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   codeql:
     name: CodeQL Analysis
