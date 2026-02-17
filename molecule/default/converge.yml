@@ -4,7 +4,6 @@
 
 - name: Converge
   hosts: all
-  become: true
 
   roles:
     - role: trevorbenson.iso_manager

@@ -48,23 +48,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python ${{ inputs.python-version }}
-        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+      - name: run-ansible-lint
+        uses: ansible/ansible-lint@7f6abc5ef97d0fb043a0f3d416dfbc74399fbda0 # v26.1.1
         with:
-          python-version: ${{ inputs.python-version }}
+          args: -v ${{ inputs.ansible-paths }}
+          setup_python: "true"
+          python_version: ${{ inputs.python-version }}
 
-      - name: Install Ansible ${{ inputs.ansible-version }}
-        run: |
-          python -m pip install --upgrade pip
-          pip install ansible-core==${{ inputs.ansible-version }}.* ansible-lint
-
-      - name: Run ansible-lint
-        env:
-          ANSIBLE_PATHS: ${{ inputs.ansible-paths }}
-        run: |
-          ansible-lint --version
-          if [ -z "$ANSIBLE_PATHS" ]; then
-            ansible-lint -v
-          else
-            ansible-lint "$ANSIBLE_PATHS" -v
-          fi

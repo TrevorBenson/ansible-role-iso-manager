@@ -45,6 +45,7 @@ jobs:
     uses: ./.github/workflows/ansible-lint.yml
     with:
       ansible-version: ${{ inputs.ansible-version || '2.16' }}
+      ansible-paths: "defaults handlers meta tasks vars"
       python-version: ${{ inputs.python-version || '3.12' }}
 
   role-validation:
