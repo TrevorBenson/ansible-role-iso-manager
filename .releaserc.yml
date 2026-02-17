@@ -4,9 +4,6 @@
 branches:
   - name: main
     channel: stable
-  - name: develop
-    channel: beta
-    prerelease: true
 
 plugins:
   - - "@semantic-release/commit-analyzer"
