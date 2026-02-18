@@ -1,0 +1,22 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+
+## 1.0.0 (2026-02-18)
+
+### Features
+
+* add script to automate publishing Ansible roles to Galaxy ([#5](https://github.com/TrevorBenson/ansible-role-iso-manager/issues/5)) ([921e2a0](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/921e2a010a15d5f17b92457107a2b4f0a7dedcd3))
+* Automate publishing Ansible roles to Galaxy ([#7](https://github.com/TrevorBenson/ansible-role-iso-manager/issues/7)) ([510e718](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/510e7189fd9095d386e3f550523bc724f30333ca))
+
+### Bug Fixes
+
+* Resolve final CI fixes so PR checks can be a gate. ([#4](https://github.com/TrevorBenson/ansible-role-iso-manager/issues/4)) ([24083a0](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/24083a0c9226c484f9485c97967029801902ef0a))
+
+### CI/CD
+
+* remove --branches flag that overrides semantic-release config ([#8](https://github.com/TrevorBenson/ansible-role-iso-manager/issues/8)) ([27d98e7](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/27d98e7eb9b32020b007d818016fa2311d50125e))
