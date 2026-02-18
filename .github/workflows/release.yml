@@ -108,6 +108,7 @@ jobs:
         if: steps.check-version.outputs.released == 'true'
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
+          git_branch: main
 
       - name: Release Summary
         if: steps.check-version.outputs.released == 'true'
