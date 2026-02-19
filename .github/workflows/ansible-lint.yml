@@ -54,4 +54,3 @@ jobs:
           args: -v ${{ inputs.ansible-paths }}
           setup_python: "true"
           python_version: ${{ inputs.python-version }}
-
