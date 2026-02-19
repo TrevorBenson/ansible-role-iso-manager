@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.0.4](https://github.com/TrevorBenson/ansible-role-iso-manager/compare/v1.0.3...v1.0.4) (2026-02-19)
+
+### Bug Fixes
+
+* empty version bump ([#13](https://github.com/TrevorBenson/ansible-role-iso-manager/issues/13)) ([86c21e2](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/86c21e202958c6bdbe7f4a7c28f831bfb33b7f0c))
+
 ## [1.0.3](https://github.com/TrevorBenson/ansible-role-iso-manager/compare/v1.0.2...v1.0.3) (2026-02-19)
 
 ### Bug Fixes
