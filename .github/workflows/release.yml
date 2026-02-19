@@ -122,10 +122,10 @@ jobs:
 
           ### Published To
           - ✅ GitHub Releases
-          - ✅ Ansible Galaxy (trevorbenson.iso_manager)
+          - ✅ Ansible Galaxy (TrevorBenson.iso_manager)
 
           ### Links
           - [GitHub Release](https://github.com/${{ github.repository }}/releases/tag/v${{ steps.check-version.outputs.version }})
-          - [Ansible Galaxy](https://galaxy.ansible.com/trevorbenson/iso_manager)
+          - [Ansible Galaxy](https://galaxy.ansible.com/ui/standalone/roles/TrevorBenson/iso_manager/)
           - [Changelog](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md)
           EOF

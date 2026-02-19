@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: iso_manager
-  namespace: trevorbenson
+  namespace: TrevorBenson
   author: Trevor Benson
   description: Download and loop-mount ISO images for PXE network boot environments
 

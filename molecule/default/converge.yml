@@ -6,7 +6,7 @@
   hosts: all
 
   roles:
-    - role: trevorbenson.iso_manager
+    - role: TrevorBenson.iso_manager
       vars:
         iso_enabled_images:
           - tinycore-17.0

@@ -1,6 +1,6 @@
 # Ansible Role: ISO Manager
 
-[![Ansible Galaxy](https://img.shields.io/badge/galaxy-trevorbenson.iso__manager-blue.svg)](https://galaxy.ansible.com/trevorbenson/iso_manager)
+[![Ansible Galaxy](https://img.shields.io/badge/galaxy-TrevorBenson.iso__manager-blue.svg)](https://galaxy.ansible.com/ui/standalone/roles/TrevorBenson/iso_manager/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Downloads and loop-mounts ISO images for PXE network boot environments. Provides a predefined catalog of known images and supports custom image definitions.
@@ -56,7 +56,7 @@ The role includes a predefined catalog (`iso_catalog`) with URLs for the followi
 - hosts: pxe_servers
   become: true
   roles:
-    - role: trevorbenson.iso_manager
+    - role: TrevorBenson.iso_manager
       vars:
         iso_enabled_images:
           - ubuntu-24.04
@@ -69,7 +69,7 @@ The role includes a predefined catalog (`iso_catalog`) with URLs for the followi
 - hosts: pxe_servers
   become: true
   roles:
-    - role: trevorbenson.iso_manager
+    - role: TrevorBenson.iso_manager
       vars:
         iso_enabled_images:
           - ubuntu-24.04
@@ -95,9 +95,9 @@ When combining all three roles, set the shared `enabled_images` and `custom_imag
         kernel_path: casper/vmlinuz
         initrd_path: casper/initrd
   roles:
-    - trevorbenson.iso_manager    # downloads + mounts ISOs (uses url)
-    - trevorbenson.pxe_server     # installs services
-    - trevorbenson.pxe_menu       # renders boot menus (uses kernel_path, initrd_path)
+    - TrevorBenson.iso_manager    # downloads + mounts ISOs (uses url)
+    - TrevorBenson.pxe_server     # installs services
+    - TrevorBenson.pxe_menu       # renders boot menus (uses kernel_path, initrd_path)
 ```
 
 ## Output
