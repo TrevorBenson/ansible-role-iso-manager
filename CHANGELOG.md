@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [1.0.3](https://github.com/TrevorBenson/ansible-role-iso-manager/compare/v1.0.2...v1.0.3) (2026-02-19)
+
+### Bug Fixes
+
+* version bump ([fa19c4c](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/fa19c4c6b4a6fb7352d4b97b87f67c88e7726941))
+
+### Maintenance
+
+* Fix items that yaml lint and ansible lint did not catch, but that the galaxy-action lists as issues ([#12](https://github.com/TrevorBenson/ansible-role-iso-manager/issues/12)) ([112f9aa](https://github.com/TrevorBenson/ansible-role-iso-manager/commit/112f9aa3343a610083ac184968cffb65f1f915f9))
+
 ## [1.0.2](https://github.com/TrevorBenson/ansible-role-iso-manager/compare/v1.0.1...v1.0.2) (2026-02-19)
 
 ### Bug Fixes
